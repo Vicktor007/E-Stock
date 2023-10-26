@@ -18,7 +18,7 @@ const registerUser = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error("Password must be up to 6 characters")
     }
-    // check f user email alrady exists
+    // check if user email alrady exists
     const userExists = await User.findOne({email})
 
     if (userExists) {
@@ -36,7 +36,15 @@ const registerUser = asyncHandler(async (req, res) => {
     })
 
      // Generate Token
-     const token = generateToken(user._id)
+     const token = generateToken(user._id);
+    //  send HTTP-only cookie
+    res.cookie("token", token, {
+        path: "/",
+        httpOnly: true,
+        expires: new Date(Date.now() + 1000 * 86400), //1 day
+        sameSite: "none",
+        secure: true
+    })
 
     if (user) {
         const {_id, name, email, photo, phone, bio} =user
