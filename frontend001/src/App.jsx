@@ -4,6 +4,9 @@ import Login from "./pages/auth/Login";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import Register from "./pages/auth/Register";
+import Sidebar from "./components/sidebar/Sidebar";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Layout from "./components/layout/Layout"
 
 
 
@@ -17,6 +20,11 @@ function App() {
       <Route path="/forgotpassword" element={<ForgotPassword/>}/>
       <Route path="/resetpassword/:resetToken" element={<ResetPassword/>}/>
 
+      <Route path="/dashboard" element={<Sidebar>
+        <Layout>
+          <Dashboard/>
+        </Layout>
+      </Sidebar>}/>
     </Routes>
     </BrowserRouter>
   );
