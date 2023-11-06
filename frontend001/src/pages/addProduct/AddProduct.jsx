@@ -3,6 +3,7 @@ import ProductForm from '../../components/product/productForm/ProductForm';
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/loader/Loader";
 import { createProduct, selectIsLoading } from '../../redux/features/product/productSlice';
+import { useNavigate } from 'react-router-dom';
 
 
 const initialState = {
@@ -13,10 +14,15 @@ const initialState = {
 }
 
 const AddProduct = () => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
    const [product, setProduct] = useState(initialState);
    const [productImage, setProductImage] = useState("");
    const [imagePreview, setImagePreview] = useState(null);
    const [description, setDescription] = useState("");
+
    const isLoading = useSelector(selectIsLoading);
 
    const {name,category, quantity, price} = product;
@@ -26,8 +32,8 @@ const AddProduct = () => {
     setProduct({ ...product, [name]: value });
   };
 
-  const handleImageChange = () => {
-    productImage(e.target.files[0])
+  const handleImageChange = (e) => {
+    setProductImage(e.target.files[0])
     setImagePreview(URL.createObjectURL(e.target.files[0]));
   };
 

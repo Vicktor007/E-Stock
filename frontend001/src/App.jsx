@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { getLoginStatus } from "./services/authService";
 import { SET_LOGIN } from "./redux/features/auth/authSlice";
 import { useEffect } from "react";
+import AddProduct from "./pages/addProduct/AddProduct";
 
 axios.defaults.withCredentials = true; //axios feature for saving user credentials to backend db
 
@@ -42,6 +43,12 @@ function App() {
       <Route path="/dashboard" element={<Sidebar>
         <Layout>
           <Dashboard/>
+        </Layout>
+      </Sidebar>}/>
+
+      <Route path="/add-product" element={<Sidebar>
+        <Layout>
+          <AddProduct/>
         </Layout>
       </Sidebar>}/>
     </Routes>
