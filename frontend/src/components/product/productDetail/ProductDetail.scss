@@ -28,3 +28,17 @@
   border: 1px solid var(--dark-blue);
   padding: 5px;
 }
+
+.image-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // width: 300px;
+  // height: 300px;
+  border: 1px solid #ccc;
+}
+
+.image-card img {
+  max-width: 100%;
+  max-height: 100%;
+}
