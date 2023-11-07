@@ -75,20 +75,56 @@ const getProduct = asyncHandler(async (req, res) => {
 
 
 // Delete Product
+// const deleteProduct = asyncHandler(async (req, res) => {
+//     const product = await Product.findById(req.params.id);
+//     // if product doesnt exist
+//     if (!product) {
+//       res.status(404);
+//       throw new Error("Product not found");
+//     }
+//     // Match product to its user
+//     if (product.user.toString() !== req.user.id) {
+//       res.status(401);
+//       throw new Error("User not authorized");
+//     }
+//     await Product.findByIdAndDelete(req.params.id);
+//     res.status(200).json({ message: "Product deleted." });
+// });
+
 const deleteProduct = asyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id);
-    // if product doesnt exist
-    if (!product) {
-      res.status(404);
-      throw new Error("Product not found");
-    }
-    // Match product to its user
-    if (product.user.toString() !== req.user.id) {
-      res.status(401);
-      throw new Error("User not authorized");
-    }
-    await Product.findByIdAndDelete(req.params.id);
-    res.status(200).json({ message: "Product deleted." });
+  const product = await Product.findById(req.params.id);
+  // if product doesn't exist
+  if (!product) {
+    res.status(404);
+    throw new Error("Product not found");
+  }
+  // Match product to its user
+  if (product.user.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error("User not authorized");
+  }
+
+  // Delete image from Cloudinary
+  try {
+      // Extract the public ID of the image from the file path
+      let filePath = product.image.filePath;
+      let fileName = filePath.substring(filePath.lastIndexOf('/') + 1);
+      let publicId = "E-stock/" + fileName.split(".")[0];
+
+      // Delete the image using the public ID
+      let result = await cloudinary.uploader.destroy(publicId);
+
+      if (result.result !== "ok") {
+          throw new Error("Failed to delete image from Cloudinary");
+      }
+  } catch (error) {
+      res.status(500);
+      throw new Error("Image could not be deleted from Cloudinary");
+  }
+
+  // Delete product from database
+  await Product.findByIdAndDelete(req.params.id);
+  res.status(200).json({ message: "Product and image deleted." });
 });
 
 // // Update product
