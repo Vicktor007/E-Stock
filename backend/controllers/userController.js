@@ -5,6 +5,12 @@ const bcrypt = require("bcryptjs");
 const Token = require("../models/tokenModel");
 const crypto = require("crypto");
 const sendEmail = require("../utils/sendMail");
+const Product = require('../models/productModel');
+
+// ...
+
+
+
 
 
 const generateToken = (id) => {
@@ -384,6 +390,32 @@ const resetPassword = asyncHandler (async (req, res) =>{
     })
 })
 
+
+
+// Delete user account and all their products
+const deleteAccount = async (req, res) => {
+    try {
+      // Get user id from request
+      const userId = req.user._id;
+  
+      // Delete all products associated with the user
+      await Product.deleteMany({ user: userId });
+  
+      // Delete the user
+      await User.findByIdAndDelete(userId);
+  
+      res.status(200).json({
+        status: 'success',
+        message: 'Account and all associated products have been deleted',
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: 'error',
+        message: 'An error occurred while trying to delete the account',
+      });
+    }
+  };
+
 module.exports = {
     registerUser,
     loginUser,
@@ -393,5 +425,6 @@ module.exports = {
     updateUser,
     changePassword,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    deleteAccount
 }
