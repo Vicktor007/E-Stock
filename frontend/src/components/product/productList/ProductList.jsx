@@ -163,7 +163,7 @@ const ProductList = ({ products, isLoading }) => {
           breakLabel="..."
           nextLabel="Next"
           onPageChange={handlePageClick}
-          pageRangeDisplayed={3}
+          pageRangeDisplayed={2}
           pageCount={pageCount}
           previousLabel="Prev"
           renderOnZeroPageCount={null}
