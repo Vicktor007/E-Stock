@@ -108,3 +108,20 @@ export const loginUser = async (userData) => {
       toast.error(message);
     }
   };
+
+  // delete user account, products and all info
+
+  export const deleteUserAccount = async (id) => {
+    try {
+      const response = await axios.delete(
+        `${BACKEND_URL}/api/users/deleteaccount/${id}`
+      );
+      return response.data;
+    } catch (error) {
+      const message =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString();
+      toast.error(message);
+    }
+  };
