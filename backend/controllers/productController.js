@@ -111,16 +111,18 @@ const deleteProduct = asyncHandler(async (req, res) => {
       let fileName = filePath.substring(filePath.lastIndexOf('/') + 1);
       let publicId = "E-stock/" + fileName.split(".")[0];
 
-      // Delete the image using the public ID
-      let result = await cloudinary.uploader.destroy(publicId);
-
-      if (result.result !== "ok") {
-          throw new Error("Failed to delete image from Cloudinary");
-      }
-  } catch (error) {
-      res.status(500);
-      throw new Error("Image could not be deleted from Cloudinary");
-  }
+        // Delete the image using the public ID
+        let result = await cloudinary.uploader.destroy(publicId);
+    
+        if (result.result !== "ok") {
+            throw new Error("Failed to delete image from Cloudinary");
+        }
+    } catch (error) {
+        console.error(error);  // Log the original error message
+        res.status(500);
+        throw new Error("Image could not be deleted from Cloudinary: " + error.message);
+    }
+    
 
   // Delete product from database
   await Product.findByIdAndDelete(req.params.id);

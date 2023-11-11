@@ -16,12 +16,7 @@ const filterSlice = createSlice({
           product.category.toLowerCase().includes(search.toLowerCase())
       );
 
-      // const tempProducts = products.filter(
-      //   (product) =>
-      //     (product && product.name && product.name.toLowerCase().includes(search.toLowerCase())) ||
-      //     (product.category && product.category.toLowerCase().includes(search.toLowerCase()))
-      // );
-      
+     
 
       state.filteredProducts = tempProducts;
     },

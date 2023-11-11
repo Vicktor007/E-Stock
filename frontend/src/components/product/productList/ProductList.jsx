@@ -19,6 +19,7 @@ import { FILTER_PRODUCTS, selectFilteredProducts } from "../../../redux/features
 
 
 
+
 const ProductList = ({ products, isLoading }) => {
   const [search, setSearch] = useState("");
   const filteredProducts = useSelector(selectFilteredProducts);
@@ -138,6 +139,7 @@ const ProductList = ({ products, isLoading }) => {
                             <AiOutlineEye size={25} color={"purple"} />
                           </Link>
                         </span>
+                        
                         <span>
                           <Link to={`/edit-product/${_id}`}>
                             <FaEdit size={20} color={"green"} />
