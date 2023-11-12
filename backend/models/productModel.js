@@ -38,8 +38,26 @@ const productSchema = mongoose.Schema({
         trim: true
     },
     image: {
-        type: Object,
-        default: {},
+        fileName: {
+            type: String,
+            default: ""
+        },
+        filePath: {
+            type: String,
+            default: ""
+        },
+        fileType: {
+            type: String,
+            default: ""
+        },
+        fileSize: {
+            type: String,
+            default: ""
+        },
+        public_id: {
+            type: String,
+            default: ""
+        }
     },
   },
   {
@@ -48,3 +66,53 @@ const productSchema = mongoose.Schema({
 
 const Product = mongoose.model("Product", productSchema);
 module.exports = Product;
+
+
+// const productSchema = mongoose.Schema({
+//     user: {
+//         type: mongoose.Schema.Types.ObjectId,
+//         required: true,
+//         ref: "User"
+//     },
+//     name: {
+//         type: String,
+//         required: [true, "Please add a name"],
+//         trim: true
+//     },
+//     sku: {
+//         type: String,
+//         required: true,
+//         default: "SKU",
+//         trim: true
+//     },
+//     category: {
+//         type: String,
+//         required: [true, "Please add a category"],
+//         trim: true
+//     },
+//     quantity: {
+//         type: String,
+//         required: [true, "Please add a quantity"],
+//         trim: true
+//     },
+//     price: {
+//         type: String,
+//         required: [true, "Please add a price"],
+//         trim: true
+//     },
+//     description: {
+//         type: String,
+//         required: [true, "Please add a description"],
+//         trim: true
+//     },
+//     image: {
+//         type: Object,
+//         default: {},
+//     },
+//   },
+//   {
+//     timestamps: true,
+// })
+
+// const Product = mongoose.model("Product", productSchema);
+// module.exports = Product;

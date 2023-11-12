@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useRedirectLoggedOutUser from "../../../customHook/useRedirectLoggedOutUser";
 import { selectIsLoggedIn } from "../../../redux/features/auth/authSlice";
 import { getProduct } from "../../../redux/features/product/productSlice";
@@ -8,6 +8,7 @@ import Card from "../../card/Card";
 import { SpinnerImg } from "../../loader/Loader";
 import "./ProductDetail.scss";
 import DOMPurify from "dompurify";
+
 
 const ProductDetail = () => {
   useRedirectLoggedOutUser("/login");
@@ -90,9 +91,18 @@ const ProductDetail = () => {
             <code className="--color-dark">
               Last Updated: {product.updatedAt.toLocaleString("en-US")}
             </code>
+            <Link to={`/edit-product/${id}`} className="edit" >
+            Edit
+            </Link>
           </div>
+          
         )}
       </Card>
+     
+                        
+                       
+                          
+                        
     </div>
   );
 };
