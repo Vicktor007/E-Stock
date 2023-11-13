@@ -4,8 +4,14 @@ import { Link } from "react-router-dom";
 import "./Home.scss";
 import heroImg from "../../assets/inv-img.png";
 import { ShowOnLogin, ShowOnLogout } from "../../components/protect/HiddenLink";
+import useLoggedIn from "../../customHook/useLoggedIn";
+import useRedirectLoggedOutUser from "../../customHook/useRedirectLoggedOutUser";
 
 const Home = () => {
+  useRedirectLoggedOutUser("/login")
+  
+  // const isLoggedIn = useLoggedIn();
+
   return (
     <div className="home">
       <nav className="container --flex-between ">
@@ -15,6 +21,33 @@ const Home = () => {
         </div>
 
         <ul className="home-links">
+        
+        {/* {isLoggedIn ? (
+  <ShowOnLogin>
+  <li>
+    <button className="--btn --btn-primary">
+      <Link to="/dashboard">Dashboard</Link>
+    </button>
+  </li>
+</ShowOnLogin>
+) : (
+  <>
+   <ShowOnLogout>
+            <li>
+              <Link to="/register">Register</Link>
+            </li>
+          </ShowOnLogout>
+          <ShowOnLogout>
+            <li>
+              <button className="--btn --btn-primary">
+                <Link to="/login">Login</Link>
+              </button>
+            </li>
+          </ShowOnLogout>
+          </>
+)} */}
+
+
           <ShowOnLogout>
             <li>
               <Link to="/register">Register</Link>

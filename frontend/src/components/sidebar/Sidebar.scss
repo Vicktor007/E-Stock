@@ -31,6 +31,8 @@ main {
 .logo {
   font-size: 30px;
   color: var(--color-white);
+  // border: 1px solid red;
+  padding-top: 7px;
 }
 .bars {
   display: flex;
