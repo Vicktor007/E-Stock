@@ -49,14 +49,16 @@ const protectDeletedUser = asyncHandler (async(req, res, next) => {
         const user = await User.findById(verifiedToken.id).select("-password")
 
         if(!user) {
-            res.status(401)
-            throw new Error("User not found");
+            res.json(false);
+        } else{
+            res.json(true);
         }
-        req.user = user
-        next()
+        
+        
     } catch (error) {
-        res.status(401).json({ message: "User account deleted" });
-        console.log(error)
+       
+        throw new Error("user still exists")
+        // console.log(error)
     }
 })
 

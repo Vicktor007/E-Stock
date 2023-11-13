@@ -8,8 +8,10 @@ import { getProducts } from "../../redux/features/product/productSlice";
 
 
 
+
 const Dashboard = () => {
   useRedirectLoggedOutUser("/login");
+  
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
