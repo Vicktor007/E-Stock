@@ -5,12 +5,11 @@ import ProductSummary from "../../components/product/productSummary/ProductSumma
 import useRedirectLoggedOutUser from "../../customHook/useRedirectLoggedOutUser";
 import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
 import { getProducts } from "../../redux/features/product/productSlice";
-import { useNavigate } from "react-router-dom";
+
 
 
 const Dashboard = () => {
- const navigate =  useNavigate();
- 
+  useRedirectLoggedOutUser("/login");
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -25,9 +24,9 @@ const Dashboard = () => {
 
     if (isError) {
       console.log(message);
-      navigate("/login")
+      
     }
-  }, [isLoggedIn, isError, message, dispatch, navigate]);
+  }, [isLoggedIn, isError, message, dispatch]);
 
   return (
     <div>

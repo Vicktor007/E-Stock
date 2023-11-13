@@ -22,7 +22,7 @@ const Profile = () => {
   const deleteUser = async (id) => {
     console.log(id);
     await deleteUserAccount(id);
-    await navigate("/register")
+    await navigate("/")
   };
 
   const confirmDelete = (id) => {

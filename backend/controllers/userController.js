@@ -142,19 +142,40 @@ if (user) {
 
 // get login status
 const loginStatus = asyncHandler(async(req, res) => {
-    const token = req.cookies.token;
-    if(!token) {
-        return res.json(false);
-    }
-    //    verify token
-    const verifiedToken = jwt.verify(token, process.env.JWT_SECRET);
-    if (verifiedToken) {
-        return res.json(true);
-           
-        }
-        return res.json(false);
-    
+  const token = req.cookies.token;
+  if(!token) {
+      return res.json(false);
+  }
+  // Verify token
+  const verifiedToken = jwt.verify(token, process.env.JWT_SECRET);
+  if (verifiedToken) {
+      // Check if user exists
+      const user = await User.findById(_id);
+      if (!user) {
+          res.status(400)
+          throw new Error("User not found");
+      } else {
+          return res.json(true);
+      }
+  }
+  return res.json(false);
 })
+
+
+// const loginStatus = asyncHandler(async(req, res) => {
+//     const token = req.cookies.token;
+//     if(!token) {
+//         return res.json(false);
+//     }
+//     //    verify token
+//     const verifiedToken = jwt.verify(token, process.env.JWT_SECRET);
+//     if (verifiedToken) {
+//         return res.json(true);
+           
+//         }
+//         return res.json(false);
+    
+// })
 
 
 // update user information
