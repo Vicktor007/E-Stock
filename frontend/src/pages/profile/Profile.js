@@ -88,7 +88,7 @@ const Profile = () => {
                 <b>Bio : </b> {profile?.bio}
               </p>
               <div className="actions">
-                <Link to="/edit-profile#top" >
+                <Link to="/edit-profile" >
                   <button className="--btn --btn-primary edit-profile">Edit Profile</button>
                 </Link>
                 <button className="--btn --btn-primary badge" onClick={() => confirmDelete(profile?.id)}>Delete Acccount</button>
