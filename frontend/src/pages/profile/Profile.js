@@ -87,13 +87,14 @@ const Profile = () => {
               <p>
                 <b>Bio : </b> {profile?.bio}
               </p>
-              <div>
-                <Link to="/edit-profile#top">
-                  <button className="--btn --btn-primary">Edit Profile</button>
+              <div className="actions">
+                <Link to="/edit-profile#top" >
+                  <button className="--btn --btn-primary edit-profile">Edit Profile</button>
                 </Link>
+                <button className="--btn --btn-primary badge" onClick={() => confirmDelete(profile?.id)}>Delete Acccount</button>
               </div>
             </span>
-            <button className="--btn --btn-primary badge" onClick={() => confirmDelete(profile?.id)}>Delete Acccount</button>
+            
 
           </Card>
         )}
