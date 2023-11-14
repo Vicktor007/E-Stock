@@ -73,7 +73,7 @@ const EditProfile = () => {
           photo: profileImage ? imageURL : profile.photo,
         };
 
-        const data = await updateUser(formData);
+         await updateUser(formData);
         // console.log(data);
         toast.success("User updated");
         navigate("/profile");
@@ -87,7 +87,7 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="profile --my2">
+    <div className="profile --my2" id="top">
       {isLoading && <Loader />}
 
       <Card cardClass={"card --flex-dir-column"}>
