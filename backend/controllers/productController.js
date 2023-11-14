@@ -20,7 +20,7 @@ const createProduct = asyncHandler(async(req, res) =>{
         // save image to cloudinary
         let uploadedFile;
         try {
-            uploadedFile = cloudinary.uploader.upload(req.file.path, {folder: "E-stock", resource_type: "image"})
+            uploadedFile = await cloudinary.uploader.upload(req.file.path, {folder: "E-stock", resource_type: "image"})
         } catch (error) {
             res.status(500)
             throw new Error("Image could not be uploaded")
@@ -130,7 +130,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Product and image deleted." });
 });
 
-// // Update product
+// Update product
 // const updateProduct = asyncHandler(async(req, res) =>{
 //     const {name, category, quantity, price, description} = req.body;
 //     const {id} = req.params
@@ -253,6 +253,9 @@ const deleteProduct = asyncHandler(async (req, res) => {
 //     res.status(200).json(updatedProduct);
 //   });
 
+
+
+// Update Product
 const updateProduct = asyncHandler(async (req, res) => {
   const { name, category, quantity, price, description } = req.body;
   const { id } = req.params;

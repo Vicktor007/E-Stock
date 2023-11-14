@@ -87,7 +87,7 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="profile --my2">
+    <div className="profile --my2" id="top">
       {isLoading && <Loader />}
 
       <Card cardClass={"card --flex-dir-column"}>

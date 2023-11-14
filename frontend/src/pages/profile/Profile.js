@@ -9,6 +9,7 @@ import { deleteUserAccount, getUser } from "../../services/authService";
 import "./Profile.scss";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   useRedirectLoggedOutUser("/login");
@@ -20,8 +21,9 @@ const Profile = () => {
 
 
   const deleteUser = async (id) => {
-    console.log(id);
+    // console.log(id);
     await deleteUserAccount(id);
+    toast.success("User Account Deleted successfully");
     await navigate("/")
   };
 
@@ -44,11 +46,11 @@ const Profile = () => {
 
 
   useEffect(() => {
-    console.log("Getting user");
+    // console.log("Getting user");
     setIsLoading(true);
     async function getUserData() {
       const data = await getUser();
-      console.log(data);
+      // console.log(data);
 
       setProfile(data);
       setIsLoading(false);
@@ -86,7 +88,7 @@ const Profile = () => {
                 <b>Bio : </b> {profile?.bio}
               </p>
               <div>
-                <Link to="/edit-profile">
+                <Link to="/edit-profile#top">
                   <button className="--btn --btn-primary">Edit Profile</button>
                 </Link>
               </div>

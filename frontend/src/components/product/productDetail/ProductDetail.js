@@ -5,7 +5,7 @@ import useRedirectLoggedOutUser from "../../../customHook/useRedirectLoggedOutUs
 import { selectIsLoggedIn } from "../../../redux/features/auth/authSlice";
 import { getProduct } from "../../../redux/features/product/productSlice";
 import Card from "../../card/Card";
-import { SpinnerImg } from "../../loader/Loader";
+import Loader from "../../loader/Loader";
 import "./ProductDetail.scss";
 import DOMPurify from "dompurify";
 
@@ -42,7 +42,7 @@ const ProductDetail = () => {
     <div className="product-detail">
       <h3 className="--mt">Product Detail</h3>
       <Card cardClass="card">
-        {isLoading && <SpinnerImg />}
+        {isLoading && <Loader />}
         {product && (
           <div className="detail">
             <Card cardClass="group image-card">

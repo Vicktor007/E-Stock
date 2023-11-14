@@ -57,8 +57,8 @@ const protectDeletedUser = asyncHandler (async(req, res, next) => {
         
     } catch (error) {
        
-        throw new Error("user still exists")
-        // console.log(error)
+        res.status(200).json(false)
+       
     }
 })
 
